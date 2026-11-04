@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#102b24" />
+    <title>Dashboard · ArsipCloud IMPS-I</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="app-page">
+    <aside class="sidebar">
+      <a class="brand" href="dashboard.html"
+        ><span class="brand-mark">A</span
+        ><span><b>ArsipCloud</b><small>IMPS-I WORKSPACE</small></span></a
+      >
+      <div class="side-label">MENU UTAMA</div>
+      <nav>
+        <a class="nav-link active" href="#overview"><span>▦</span> Ringkasan</a
+        ><a class="nav-link" href="#documents"><span>▤</span> Arsip Dokumen</a
+        ><a class="nav-link" href="#upload"><span>＋</span> Upload Dokumen</a
+        ><a class="nav-link admin-only" href="#members" hidden
+          ><span>♙</span> Pengguna</a
+        >
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="side-help">
+          <span class="help-icon">?</span><b>Butuh bantuan?</b>
+          <p>Hubungi administrator IMPS-I untuk kendala akses.</p>
+        </div>
+        <button id="logoutButton" class="logout-btn">
+          <span>↪</span> Keluar akun
+        </button>
+      </div>
+    </aside>
+    <main class="main-content">
+      <header class="topbar">
+        <div>
+          <span class="eyebrow">RUANG KERJA DIGITAL</span>
+          <h1>Dashboard</h1>
+        </div>
+        <div class="top-user">
+          <div class="avatar" id="avatarInitial">A</div>
+          <div>
+            <b id="userName">Memuat...</b
+            ><small id="userRole">Memuat role...</small>
+          </div>
+        </div>
+      </header>
+      <section id="overview" class="welcome-panel">
+        <div>
+          <span class="eyebrow light">ARSIPCLOUD IMPS-I</span>
+          <h2>Selamat datang<span id="welcomeName"></span>.</h2>
+          <p>Kelola arsip organisasi dengan rapi, aman, dan mudah ditemukan.</p>
+        </div>
+        <div class="welcome-symbol">A</div>
+      </section>
+      <section class="stats-grid">
+        <article class="stat-card">
+          <div class="stat-icon green">▤</div>
+          <span>Total dokumen</span><strong id="totalDocuments">—</strong
+          ><small>Arsip tersimpan</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon amber">◷</div>
+          <span>Surat masuk</span><strong id="incomingDocuments">—</strong
+          ><small>Dokumen diterima</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon blue">↗</div>
+          <span>Surat keluar</span><strong id="outgoingDocuments">—</strong
+          ><small>Dokumen diterbitkan</small>
+        </article>
+        <article class="stat-card">
+          <div class="stat-icon violet">▧</div>
+          <span>Jenis arsip</span><strong id="typeCount">—</strong
+          ><small>Kategori berbeda</small>
+        </article>
+      </section>
+      <section id="documents" class="content-card">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">PUSAT DOKUMEN</span>
+            <h2>Arsip dokumen</h2>
+            <p>Temukan dan kelola dokumen organisasi.</p>
+          </div>
+          <a href="#upload" class="btn btn-primary">＋ Upload dokumen</a>
+        </div>
+        <div class="toolbar">
+          <div class="search-box">
+            <span>⌕</span
+            ><input
+              id="searchInput"
+              type="search"
+              placeholder="Cari nomor atau perihal dokumen..."
+            />
+          </div>
+          <select id="typeFilter" aria-label="Filter jenis">
+            <option value="">Semua jenis</option>
+            <option value="surat_masuk">Surat masuk</option>
+            <option value="surat_keluar">Surat keluar</option>
+            <option value="proposal">Proposal</option>
+            <option value="lpj">LPJ</option>
+            <option value="notulen">Notulen</option>
+            <option value="lainnya">Lainnya</option></select
+          ><button id="refreshButton" class="btn btn-outline">
+            ↻ <span class="refresh-text">Muat ulang</span>
+          </button>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>PERIHAL / NOMOR</th>
+                <th>JENIS</th>
+                <th>TANGGAL</th>
+                <th>AKSI</th>
+              </tr>
+            </thead>
+            <tbody id="documentList">
+              <tr>
+                <td colspan="4" class="empty-state">Memuat arsip...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <span id="documentCount">Memuat data...</span
+          ><span>ARSIPCLOUD · IMPS-I</span>
+        </div>
+      </section>
+      <section id="upload" class="content-card upload-card">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">TAMBAHKAN ARSIP</span>
+            <h2>Upload dokumen baru</h2>
+            <p>Lengkapi informasi berikut sebelum menyimpan arsip.</p>
+          </div>
+        </div>
+        <form id="uploadForm" class="upload-grid">
+          <label
+            >Nomor dokumen<input
+              type="text"
+              id="nomor"
+              placeholder="Contoh: 001/IMPSI/XI/2026"
+              required /></label
+          ><label
+            >Perihal dokumen<input
+              type="text"
+              id="perihal"
+              placeholder="Masukkan perihal dokumen"
+              required /></label
+          ><label
+            >Jenis dokumen<select id="jenis" required>
+              <option value="">Pilih jenis</option>
+              <option value="surat_masuk">Surat masuk</option>
+              <option value="surat_keluar">Surat keluar</option>
+              <option value="proposal">Proposal</option>
+              <option value="lpj">LPJ</option>
+              <option value="notulen">Notulen</option>
+              <option value="lainnya">Lainnya</option>
+            </select></label
+          ><label
+            >Tanggal dokumen<input type="date" id="tanggal" required /></label
+          ><label
+            >Hak akses<select id="akses" required>
+              <option value="">Pilih hak akses</option>
+              <option value="umum">Umum · Semua anggota</option>
+              <option value="internal">Internal</option>
+            </select></label
+          ><label class="file-field"
+            >File dokumen<input
+              type="file"
+              id="fileDokumen"
+              accept=".pdf,.jpg,.jpeg,.png,.docx"
+              required
+            /><small>PDF, JPG, PNG, DOCX · Maksimal 5 MB</small></label
+          >
+          <div class="upload-actions">
+            <p id="uploadMessage" class="form-message" role="status"></p>
+            <button class="btn btn-primary" type="submit">
+              Simpan dokumen <span>→</span>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section id="members" class="content-card admin-only" hidden>
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">AKSES ORGANISASI</span>
+            <h2>Pengguna terdaftar</h2>
+            <p>Daftar profil yang terdaftar pada sistem.</p>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>NAMA</th>
+                <th>ROLE</th>
+                <th>ID PENGGUNA</th>
+              </tr>
+            </thead>
+            <tbody id="memberList">
+              <tr>
+                <td colspan="3" class="empty-state">Memuat pengguna...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      <footer class="app-footer">
+        © <span id="year"></span> ArsipCloud IMPS-I <span>·</span> Sistem Arsip
+        Digital Organisasi
+      </footer>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="dashboard.js"></script>
+  </body>
+</html>
