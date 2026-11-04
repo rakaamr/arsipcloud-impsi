@@ -1,18 +1,174 @@
 <!doctype html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#102b24"><title>ArsipCloud IMPS-I</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body class="auth-page">
-  <main class="auth-shell">
-    <section class="auth-brand"><div class="brand-mark">A</div><span class="eyebrow">IMPS-I DIGITAL WORKSPACE</span><h1>Arsip organisasi,<br><em>lebih tertata.</em></h1><p>Satu ruang untuk menyimpan, menemukan, dan mengelola dokumen organisasi dengan lebih mudah.</p><div class="auth-foot">ARSIPCLOUD · IMPS-I</div></section>
-    <section class="auth-card"><div class="mobile-brand"><div class="brand-mark">A</div><b>ArsipCloud</b></div><span class="eyebrow">SELAMAT DATANG KEMBALI</span><h2>Masuk ke akun</h2><p class="muted">Gunakan akun organisasi untuk melanjutkan.</p>
-      <form id="loginForm" class="form-stack"><label>Email<input id="email" type="email" placeholder="nama@email.com" autocomplete="username" required></label><label>Password<input id="password" type="password" placeholder="Masukkan password" autocomplete="current-password" required></label><button class="btn btn-primary btn-full" type="submit">Masuk <span>→</span></button></form><p id="message" class="form-message" role="status"></p><div class="auth-note">Akses terbatas untuk pengurus dan anggota IMPS-I.</div>
-    </section>
-  </main>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script><script src="auth.js"></script>
-</body></html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#102b24" />
+    <title>ArsipCloud IMPS-I</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body class="auth-page">
+    <main class="auth-shell">
+      <!-- BRAND SECTION -->
+      <section class="auth-brand">
+        <div class="brand-mark">A</div>
+        <span class="eyebrow">IMPS-I DIGITAL WORKSPACE</span>
+
+        <h1>Arsip organisasi,<br /><em>lebih tertata.</em></h1>
+
+        <p>
+          Satu ruang untuk menyimpan, menemukan, dan mengelola dokumen
+          organisasi dengan lebih mudah.
+        </p>
+
+        <div class="auth-foot">ARSIPCLOUD · IMPS-I</div>
+      </section>
+
+      <!-- AUTH SECTION -->
+      <section class="auth-card">
+        <div class="mobile-brand">
+          <div class="brand-mark">A</div>
+          <b>ArsipCloud</b>
+        </div>
+
+        <!-- LOGIN PANEL -->
+        <div id="loginPanel">
+          <span class="eyebrow">SELAMAT DATANG KEMBALI</span>
+
+          <h2>Masuk ke akun</h2>
+          <p class="muted">Gunakan akun organisasi untuk melanjutkan.</p>
+
+          <form id="loginForm" class="form-stack">
+            <label>
+              Email
+              <input
+                id="email"
+                type="email"
+                placeholder="nama@email.com"
+                autocomplete="username"
+                required
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                id="password"
+                type="password"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+              />
+            </label>
+
+            <button class="btn btn-primary btn-full" type="submit">
+              Masuk <span>→</span>
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Belum memiliki akun?
+            <button type="button" class="text-button" id="showRegister">
+              Daftar akun
+            </button>
+          </p>
+        </div>
+
+        <!-- REGISTER PANEL -->
+        <div id="registerPanel" hidden>
+          <span class="eyebrow">PENDAFTARAN PENGGUNA</span>
+
+          <h2>Buat akun baru</h2>
+          <p class="muted">Daftarkan akun anggota IMPS-I.</p>
+
+          <form id="registerForm" class="form-stack">
+            <label>
+              Nama lengkap
+              <input
+                id="registerName"
+                type="text"
+                placeholder="Nama lengkap"
+                autocomplete="name"
+                maxlength="100"
+                required
+              />
+            </label>
+
+            <label>
+              Email
+              <input
+                id="registerEmail"
+                type="email"
+                placeholder="nama@email.com"
+                autocomplete="email"
+                required
+              />
+            </label>
+
+            <label>
+              Password
+              <input
+                id="registerPassword"
+                type="password"
+                placeholder="Minimal 8 karakter"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              />
+            </label>
+
+            <label>
+              Konfirmasi password
+              <input
+                id="confirmPassword"
+                type="password"
+                placeholder="Ulangi password"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              />
+            </label>
+
+            <button class="btn btn-primary btn-full" type="submit">
+              Daftar akun <span>→</span>
+            </button>
+          </form>
+
+          <p class="auth-switch">
+            Sudah memiliki akun?
+            <button type="button" class="text-button" id="showLogin">
+              Kembali ke login
+            </button>
+          </p>
+        </div>
+
+        <!-- NOTIFICATION -->
+        <p
+          id="message"
+          class="form-message"
+          role="status"
+          aria-live="polite"
+        ></p>
+
+        <div class="auth-note">
+          Akses terbatas untuk pengurus dan anggota IMPS-I. Pendaftaran baru
+          tidak memberikan hak admin.
+        </div>
+      </section>
+    </main>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="config.js"></script>
+    <script src="auth.js"></script>
+  </body>
+</html>
